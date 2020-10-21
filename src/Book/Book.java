@@ -8,8 +8,9 @@ public class Book{
     protected String publisher;
     protected String pubDate;
     protected int pageCount;
+    protected int copies;
 
-    public Book(boolean inStock, String isbn, String title, String author, String publisher, String pubDate, int pageCount) {
+    public Book(boolean inStock, String isbn, String title, String author, String publisher, String pubDate, int pageCount, int copies) {
         this.inStock = inStock;
         this.isbn = isbn;
         this.title = title;
@@ -17,5 +18,6 @@ public class Book{
         this.publisher = publisher;
         this.pubDate = pubDate;
         this.pageCount = pageCount;
+        this.copies = copies;
     }
 }
