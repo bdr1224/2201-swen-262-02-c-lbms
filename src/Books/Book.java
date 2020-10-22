@@ -117,4 +117,17 @@ public class Book {
      * Return a copy of this book
      */
     public void returnBook()  { this.checkedOut--; }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", pages=" + pages +
+                ", copies=" + copies +
+                ", checkedOut=" + checkedOut +
+                ", publishedDate=" + publishedDate +
+                '}';
+    }
 }
