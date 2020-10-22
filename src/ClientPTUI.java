@@ -13,12 +13,17 @@ public class ClientPTUI {
 
     public static void main(String[] args) {
         List<Book> books = new ArrayList<>();
+        Random random = new Random();
         for (int i=0; i < 10; i++){
             books.add(new Book("Book #"+i,
                     "Author #"+i,
-                    "ISBN #"+i,
-                    100+i,
-                    5+i,
+                    random.nextInt(1000)+"-"
+                            +random.nextInt(10)+"-"
+                            +random.nextInt(100)+"-"
+                            +random.nextInt(1000000)+"-"
+                            +random.nextInt(10),
+                    random.nextInt(1000),
+                    random.nextInt(100),
                     0,
                     new Date(2008,  11, 21)));
         }
