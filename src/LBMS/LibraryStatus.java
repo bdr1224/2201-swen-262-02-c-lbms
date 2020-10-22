@@ -1,5 +1,5 @@
 package LBMS;
 
-public abstract class LibraryStatus {
-    public abstract boolean isLibraryOpen();
+public interface LibraryStatus {
+    void isLibraryOpen();
 }

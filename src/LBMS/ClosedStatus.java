@@ -1,9 +1,7 @@
 package LBMS;
 
-public class ClosedStatus extends LibraryStatus{
+public class ClosedStatus implements LibraryStatus{
 
-    public boolean isLibraryOpen() {
-        return false;
-    }
+    public void isLibraryOpen() { }
 
 }
