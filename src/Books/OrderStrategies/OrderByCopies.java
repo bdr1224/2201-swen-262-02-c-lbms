@@ -1,14 +1,14 @@
-package OrderBy.strategies;
+package Books.OrderStrategies;
 
-import OrderBy.Book;
-import OrderBy.BookSorter;
+import Books.Book;
+import Books.BookSorter;
 
 import java.util.Comparator;
 import java.util.List;
 
 public class OrderByCopies implements BookSorter {
 
-    public List<Book> sort(List<Book> books) {
+    public List<Book> sortBy(List<Book> books) {
         books.sort(Comparator.comparing(Book::getCopies));
         return books;
     }
