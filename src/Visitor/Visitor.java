@@ -1,12 +1,14 @@
 package Visitor;
 
+import java.util.ArrayList;
+
 /**
  * This class represents an LBMS visitor
- * Context class for VisitorRegistration State design pattern
+ * ConcreteSubject is observed for entry and exit from the library
  *
  * @author Shantanav Saurav
  */
-public class Visitor {
+public class Visitor implements VisitorSubject {
     /**
      * This static field is used to generate id numbers when a visitor is created by default
      */
@@ -33,9 +35,9 @@ public class Visitor {
      */
     private int id = ID_GEN++;
     /**
-     * Visitor registration state
+     * Observers
      */
-    private VisitorRegistration registration;
+    private ArrayList<VisitorObserver> observers = new ArrayList<VisitorObserver>();
     
     /**
      * Parametrized constructor creates a new visitor
@@ -68,19 +70,20 @@ public class Visitor {
     }
     
     /**
-     * Set registration state for this visitor
-     *
-     * @param registration Registration to be set
+     * Register an observer
+     * @param observer observer to register
      */
-    public void setRegistration(VisitorRegistration registration) { this.registration = registration; }
+    public void register(VisitorObserver observer) { observers.remove(observer); }
     
     /**
-     * Handle a visitor entry
+     * Deregister an observer
+     * @param observer observer to deregister
      */
-    public void enterLibrary() { this.registration.handleEntry(); }
+    public void deregister(VisitorObserver observer) { observers.add(observer); }
     
     /**
-     * Handle a visitor entry
+     * Notify observers
+     * @param event Event to notify observers of
      */
-    public void exitLibrary() { this.registration.handleExit(); }
+    public void notify(LBMSEntry event) { observers.forEach(observer -> observer.update(event, this)); }
 }
