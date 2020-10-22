@@ -1,6 +1,11 @@
 package Visitor;
 
+import Books.Book;
+import LBMS.TimeEvent;
+import LBMS.TimeHandler;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * This class represents an LBMS visitor
@@ -8,7 +13,7 @@ import java.util.ArrayList;
  *
  * @author Shantanav Saurav
  */
-public class Visitor implements VisitorSubject {
+public class Visitor implements VisitorSubject, TimeHandler {
     /**
      * This static field is used to generate id numbers when a visitor is created by default
      */
@@ -34,6 +39,14 @@ public class Visitor implements VisitorSubject {
      * Visitor ID
      */
     private String id = Integer.toString(ID_GEN++);
+    /**
+     * Visitor checked out books
+     */
+    private HashMap<String, Book> checkedOutBooks;
+    /**
+     * Amount to be paid by visitor in case of overdue books
+     */
+    private int amountDue = 0;
     /**
      * Observers
      */
@@ -86,4 +99,16 @@ public class Visitor implements VisitorSubject {
      * @param event Event to notify observers of
      */
     public void notify(LBMSEntry event) { observers.forEach(observer -> observer.update(event, this)); }
+    
+    /**
+     * Handle time changes
+     * @param te TimeEvent
+     */
+    public void handleTimeEvent(TimeEvent te) {
+        for (String id : checkedOutBooks.keySet()) {
+            if (te.getDate().getTime() > Integer.parseInt(id)) {
+                // TODO Mark as overdue, calculate cost
+            }
+        }
+    }
 }

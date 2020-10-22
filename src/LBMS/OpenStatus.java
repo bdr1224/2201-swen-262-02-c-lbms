@@ -1,9 +1,7 @@
 package LBMS;
 
-public class OpenStatus extends LibraryStatus {
-
-    public boolean isLibraryOpen() {
-        return true;
+public class OpenStatus implements LibraryStatus {
+    public void handleTime(TimeEvent te) {
+    
     }
-
 }

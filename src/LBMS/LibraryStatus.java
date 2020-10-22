@@ -1,5 +1,5 @@
 package LBMS;
 
 public interface LibraryStatus {
-    void isLibraryOpen();
+    void handleTime(TimeEvent te);
 }
