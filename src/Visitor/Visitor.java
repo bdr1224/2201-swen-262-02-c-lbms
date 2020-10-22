@@ -33,7 +33,7 @@ public class Visitor implements VisitorSubject {
     /**
      * Visitor ID
      */
-    private int id = ID_GEN++;
+    private String id = Integer.toString(ID_GEN++);
     /**
      * Observers
      */
@@ -61,7 +61,7 @@ public class Visitor implements VisitorSubject {
      * @param phoneNumber Visitor phone number
      * @param id Visitor ID
      */
-    public Visitor(String firstName, String lastName, String address, String phoneNumber, int id) {
+    public Visitor(String firstName, String lastName, String address, String phoneNumber, String id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
