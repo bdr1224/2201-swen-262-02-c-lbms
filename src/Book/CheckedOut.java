@@ -1,11 +1,7 @@
 package Book;
 
-public class CheckedOut{
-    protected Book book;
-
-    public CheckedOut(Book book) {
-        this.book = book;
-    }
+public class CheckedOut implements BookStatus{
+    @Override
     public boolean isBookAvailable(){
         return false;
     }

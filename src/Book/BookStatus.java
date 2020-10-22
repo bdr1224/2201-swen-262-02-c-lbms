@@ -1,10 +1,5 @@
 package Book;
 
-public class BookStatus{
-
-    public boolean isBookAvailable(){
-        return false;
-    }
-
-
+public interface BookStatus{
+    public boolean isBookAvailable();
 }
