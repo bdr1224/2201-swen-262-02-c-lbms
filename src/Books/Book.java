@@ -1,5 +1,6 @@
 package Books;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -18,7 +19,7 @@ public class Book {
     /**
      * Author of book
      */
-    private final String author;
+    private ArrayList<String> author;
     /**
      * ISBN of the book
      */
@@ -50,7 +51,7 @@ public class Book {
      * @param checkedOut number of checked out books
      * @param publishedDate book published date
      */
-    public Book(String title, String author, String isbn, int pages, int copies, int checkedOut, Date publishedDate) {
+    public Book(String title, ArrayList<String> author, String isbn, int pages, int copies, int checkedOut, Date publishedDate) {
         this.title = title;
         this.author = author;
         this.isbn = isbn;
@@ -70,7 +71,7 @@ public class Book {
      * Fetches Author
      * @return Author
      */
-    public String getAuthor() { return author; }
+    public ArrayList<String> getAuthor() { return author; }
     
     /**
      * Fetches ISBN
@@ -122,7 +123,7 @@ public class Book {
     public String toString() {
         return "Book{" +
                 "title='" + title + '\'' +
-                ", author='" + author + '\'' +
+                ", author(s)='" + author.toString() + '\'' +
                 ", isbn='" + isbn + '\'' +
                 ", pages=" + pages +
                 ", copies=" + copies +

@@ -22,7 +22,13 @@ public class SearchByAuthor implements BookSearcher {
     public List<Book> searchFor(List<Book> books, String query) {
         List<Book> results = new ArrayList<>();
         // Lambda to iterate over books and add any matches to results list
-        books.forEach(book -> { if (book.getAuthor().equals(query)) { results.add(book); } });
+        books.forEach(book -> {
+            book.getAuthor().forEach(author -> {
+                if (author.equals(query)) {
+                    results.add(book);
+                }
+            });
+        });
         return results;
     }
 }
