@@ -7,6 +7,7 @@ import java.util.Date;
  *
  * @author Shantanav Saurav
  * @author Owen Racette
+ * @author Ben Radley
  */
 public class Book {
     
