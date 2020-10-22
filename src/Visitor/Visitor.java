@@ -44,6 +44,10 @@ public class Visitor implements VisitorSubject, TimeHandler {
      */
     private HashMap<String, Book> checkedOutBooks;
     /**
+     * Overdue book prices
+     */
+    private HashMap<Book, Integer> overdueBookPricing;
+    /**
      * Amount to be paid by visitor in case of overdue books
      */
     private int amountDue = 0;
@@ -101,14 +105,40 @@ public class Visitor implements VisitorSubject, TimeHandler {
     public void notify(LBMSEntry event) { observers.forEach(observer -> observer.update(event, this)); }
     
     /**
+     * Check out a book
+     * @param book book to be checked out
+     */
+    public void checkOutBook(Book book) {
+        if (checkedOutBooks.size() <= 5) {
+            checkedOutBooks.put(book.getIsbn(), book);
+        } else {
+            System.out.println("You can't check out any more books, you can only have 5 at a time.");
+        }
+    }
+    
+    /**
+     * Return a book
+     */
+    public void returnBook(Book book) { checkedOutBooks.remove(book.getIsbn());}
+    
+    /**
      * Handle time changes
      * @param te TimeEvent
      */
     public void handleTimeEvent(TimeEvent te) {
+        // Check for overdue books
         for (String id : checkedOutBooks.keySet()) {
             if (te.getDate().getTime() > Integer.parseInt(id)) {
-                // TODO Mark as overdue, calculate cost
+                int time_diff = (int) (te.getDate().getTime() - Integer.parseInt(id));
+                int days_late = time_diff / 86400000;
+                overdueBookPricing.put(checkedOutBooks.get(id), 10 + ((days_late / 7) * 2));
             }
         }
+        // Calculate amount due for overdue books
+        int sum = 0;
+        for (Book book : overdueBookPricing.keySet()) {
+            sum += overdueBookPricing.get(book);
+        }
+        amountDue = sum;
     }
 }
