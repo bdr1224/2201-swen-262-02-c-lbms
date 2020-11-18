@@ -4,7 +4,10 @@ import Books.BookSorter;
 import Books.OrderStrategies.OrderByCopies;
 import Books.OrderStrategies.OrderByTitle;
 import Books.SearchStrategies.SearchByTitle;
+import LBMS.Library;
+import Visit.LibraryUI;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -17,9 +20,16 @@ public class ClientPTUI {
     public static void main(String[] args) {
         List<Book> books = new ArrayList<>();
         Random random = new Random();
+
+        String host = args[0];
+        int port = Integer.parseInt(args[1]);
+        LibraryUI libraryUI = new LibraryUI(host, port);
+
         for (int i=0; i < 10; i++){
-            books.add(new Book("Book #"+i,
-                    "Author #"+i,
+            ArrayList<String> author = new ArrayList<>();
+            author.add("Author #" + i);
+            books.add(new Book("Book #" + i,
+                    author,
                     random.nextInt(1000)+"-"
                             +random.nextInt(10)+"-"
                             +random.nextInt(100)+"-"
