@@ -35,11 +35,15 @@ public class Book {
     /**
      * Number of copies currently loaned out
      */
-    private int checkedOut;
+    private int numCheckedOut;
+    /**
+     * This book's publisher
+     */
+    private final String publisher;
     /**
      * Published date
      */
-    private final Date publishedDate;
+    private final String publishedDate;
     
     /**
      * Parametrized constructor to create a book
@@ -48,16 +52,18 @@ public class Book {
      * @param isbn Book isbn
      * @param pages number of pages
      * @param copies number of owned copies
-     * @param checkedOut number of checked out books
+     * @param numCheckedOut number of checked out books
      * @param publishedDate book published date
      */
-    public Book(String title, ArrayList<String> author, String isbn, int pages, int copies, int checkedOut, Date publishedDate) {
+    public Book(String isbn, String title, ArrayList<String> author, String publisher,
+                String publishedDate, int copies, int numCheckedOut, int pages) {
         this.title = title;
         this.author = author;
+        this.publisher = publisher;
         this.isbn = isbn;
         this.pages = pages;
         this.copies = copies;
-        this.checkedOut = checkedOut;
+        this.numCheckedOut = numCheckedOut;
         this.publishedDate = publishedDate;
     }
     
@@ -89,7 +95,7 @@ public class Book {
      * Fetches number of checked out books
      * @return number of checked out books
      */
-    public int getCheckedOut() { return checkedOut; }
+    public int getCheckedOut() { return numCheckedOut; }
     
     /**
      * Fetches number of owned copies
@@ -101,24 +107,28 @@ public class Book {
      * Fetches whether the book is in stock
      * @return whether the book is in stock
      */
-    public boolean isInStock() { return copies - checkedOut > 0; }
+    public boolean isInStock() { return copies - numCheckedOut > 0; }
     
     /**
      * Fetches date published
      * @return date published
      */
-    public Date getPublishedDateDate() { return publishedDate; }
+    public String getPublishedDateDate() { return publishedDate; }
     
     /**
      * Check out a copy of this book
      */
-    public void checkOut() { this.checkedOut++; }
+    public void checkOut() { this.numCheckedOut++; }
     
     /**
      * Return a copy of this book
      */
-    public void returnBook()  { this.checkedOut--; }
-
+    public void returnBook()  { this.numCheckedOut--; }
+    
+    /**
+     * String representation of a book
+     * @return String representation of a book
+     */
     @Override
     public String toString() {
         return "Book{" +
@@ -127,7 +137,7 @@ public class Book {
                 ", isbn='" + isbn + '\'' +
                 ", pages=" + pages +
                 ", copies=" + copies +
-                ", checkedOut=" + checkedOut +
+                ", numCheckedOut=" + numCheckedOut +
                 ", publishedDate=" + publishedDate +
                 '}';
     }
