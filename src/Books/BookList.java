@@ -40,7 +40,7 @@ public class BookList {
                 }
                 
                 // Title
-                pattern = Pattern.compile("[,][\"][\\p{ASCII}]+[\"][,][{]");
+                pattern = Pattern.compile("[,][\"][\\d\\s\\w\\S]+[\"][,][{]");
                 matcher = pattern.matcher(line);
                 if (matcher.find()) { title = matcher.group(0).substring(2, matcher.group(0).length() - 3); }
                 
