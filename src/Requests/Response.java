@@ -1,5 +1,11 @@
 package Requests;
 
+/**
+ * This class represents a LBMS Response. It is very similar to an LBMS Request,
+ * but only stores a text string and does not contain an execute functionality.
+ *
+ * @author Jake Waclawski
+ */
 public class Response {
     private Request request;
     private String textString;

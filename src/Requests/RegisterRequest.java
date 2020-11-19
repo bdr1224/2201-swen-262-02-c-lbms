@@ -2,6 +2,13 @@ package Requests;
 
 import LBMS.Library;
 
+/**
+ * This class represents a LBMS register request. Visitors of the library
+ * are able to register an account providing their name, address, and phone
+ * number.
+ *
+ * @author Jake Waclawski
+ */
 public class RegisterRequest implements Request {
     private String textString;
     private String[] params;
@@ -19,13 +26,13 @@ public class RegisterRequest implements Request {
             this.textString = textString + ";";
             this.isPartial = false;
         }
-
+        System.out.println(this.textString);
         this.params = this.textString.split(",");
     }
 
     @Override
     public Response execute(Library library) {
-        System.out.println("Executing request: " + this.textString);
+        System.out.println("Executing request: " + this.textString + " " + this.params.length);
         if(!this.isPartial) {
             if(this.params.length == 5) return new Response(this, library.createNewVisitor(params[1], params[2], params[3], params[4]));
             return new Response(this, "Invalid arguments");

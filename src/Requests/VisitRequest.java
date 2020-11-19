@@ -2,6 +2,11 @@ package Requests;
 
 import LBMS.Library;
 
+/**
+ * This class represents an LBMS visit request.
+ *
+ * @author Jake Waclawski
+ */
 public class VisitRequest implements Request {
     private String textString;
     private String[] params;

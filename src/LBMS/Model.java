@@ -31,9 +31,9 @@ public class Model {
         String[] params = in.split(",");
         switch(params[0]) {
             case "connect":
-                return new VisitRequest("connect");
+                return new VisitRequest(in);
             case "register":
-                return new RegisterRequest("register");
+                return new RegisterRequest(in);
             default: return null;
         }
     }
