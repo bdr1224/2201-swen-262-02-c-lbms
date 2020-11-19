@@ -29,11 +29,9 @@ public class ClientPTUI {
             System.out.print(">>> ");
             in = input.nextLine();
             Request request = processInput(in);
-            if(request != null) {
-                Response response = LBMS.processRequest(request);
-                System.out.println(request.getTextString());
-                System.out.println(response.getTextString());
-            } else System.out.println("Unrecognized command!");
+            Response response = LBMS.processRequest(request);
+            if(request != null) System.out.println("Req: " + request.getTextString());
+            System.out.println("Res: " + response.getTextString());
         } while (!in.equals("quit"));
     }
 

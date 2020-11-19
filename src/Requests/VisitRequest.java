@@ -1,5 +1,7 @@
 package Requests;
 
+import LBMS.Library;
+
 public class VisitRequest implements Request {
     private String textString;
     private String[] params;
@@ -15,14 +17,16 @@ public class VisitRequest implements Request {
             this.isPartial = true;
         } else {
             this.textString = textString + ";";
+            this.isPartial = false;
         }
 
         this.params = this.textString.split(",");
     }
 
     @Override
-    public void execute() {
-        System.out.println("Executing VisitRequest");
+    public Response execute(Library library) {
+        System.out.println("Executing request: " + this.textString);
+        return new Response(this, "VisitRequest response");
     }
 
     @Override

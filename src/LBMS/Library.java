@@ -60,21 +60,11 @@ public class Library implements VisitorObserver, TimeHandler {
     }
     
     public Response processRequest(Request request) {
-        String[] params = request.getParams();
-        switch(params[0]) {
-            case "connect":
-                request.execute();
-                return new Response(request, "client_id");
-            case "quit":
-                System.out.println("Goodbye!");
-                System.exit(0);
-            case "register":
-                return new Response(request, this.createNewVisitor(params[1], params[2], params[3], params[4]));
-            default: return new Response(request, "Unrecognized command");
-        }
+        if(request == null) return new Response("Unknown command");
+        return request.execute(this);
     }
     
-    private String createNewVisitor(String firstName, String lastName, String address, String phoneNumber) {
+    public String createNewVisitor(String firstName, String lastName, String address, String phoneNumber) {
         Visitor visitor = new Visitor(firstName, lastName, address, phoneNumber);
         this.visitors.put(visitor.getId(), visitor);
         return "register," + visitor.getId() + "," + (new Date().getDate());

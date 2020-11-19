@@ -1,5 +1,7 @@
 package Requests;
 
+import LBMS.Library;
+
 public class RegisterRequest implements Request {
     private String textString;
     private String[] params;
@@ -15,14 +17,21 @@ public class RegisterRequest implements Request {
             this.isPartial = true;
         } else {
             this.textString = textString + ";";
+            this.isPartial = false;
         }
 
         this.params = this.textString.split(",");
     }
 
     @Override
-    public void execute() {
-        System.out.println("Executing RegisterRequest");
+    public Response execute(Library library) {
+        System.out.println("Executing request: " + this.textString);
+        if(!this.isPartial) {
+            if(this.params.length == 5) return new Response(this, library.createNewVisitor(params[1], params[2], params[3], params[4]));
+            return new Response(this, "Invalid arguments");
+        }
+
+        return new Response(this, "TODO: Process partial command");
     }
 
     @Override

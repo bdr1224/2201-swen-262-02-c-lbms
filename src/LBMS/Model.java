@@ -19,11 +19,11 @@ public class Model {
         if (query.equals("quit")) System.exit(0);
         Request request = processInput(query);
         String[] toPrint = new String[2];
-        if(request != null) {
-            Response response = LBMS.processRequest(request);
-            toPrint[0] = request.getTextString();
-            toPrint[1] = response.getTextString();
-        } else toPrint[0] = "Unrecognized command!";
+
+        Response response = LBMS.processRequest(request);
+        if(request != null) toPrint[0] = request.getTextString();
+        else toPrint[0] = query;
+        toPrint[1] = response.getTextString();
         return toPrint;
     }
 
