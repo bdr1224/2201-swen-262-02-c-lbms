@@ -1,5 +1,9 @@
 package Books;
-
+/**
+ * Return command for return out a book that can be undone
+ *
+ * @author Ben Radley
+ * */
 import Visitor.Command;
 import Visitor.Application;
 import Visitor.UndoRedoManager;

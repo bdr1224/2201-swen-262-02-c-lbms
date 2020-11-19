@@ -1,5 +1,9 @@
 package Books;
-
+/**
+ * Borrow command for taking out a book that can be undone
+ *
+ * @author Ben Radley
+ * */
 import Visitor.Command;
 import Visitor.Application;
 import Visitor.UndoRedoManager;
