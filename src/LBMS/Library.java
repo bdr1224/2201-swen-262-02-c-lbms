@@ -14,7 +14,7 @@ import Visitor.Visitor;
 import Visitor.VisitorObserver;
 
 public class Library implements VisitorObserver, TimeHandler {
-    private HashMap<String, Visitor> visitors;
+    private HashMap<String, Visitor> visitors = new HashMap<String, Visitor>();
     private ArrayList<Visitor> currentVisitors = new ArrayList<Visitor>();
     private BookList books;
     private LibraryStatus status;
@@ -66,7 +66,8 @@ public class Library implements VisitorObserver, TimeHandler {
     
     public String createNewVisitor(String firstName, String lastName, String address, String phoneNumber) {
         Visitor visitor = new Visitor(firstName, lastName, address, phoneNumber);
+        System.out.println(visitor.getId());
         this.visitors.put(visitor.getId(), visitor);
-        return "register," + visitor.getId() + "," + (new Date().getDate());
+        return visitor.getId() + "," + (new Date().getDate());
     }
 }

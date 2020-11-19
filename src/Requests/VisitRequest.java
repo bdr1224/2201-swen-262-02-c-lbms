@@ -31,7 +31,12 @@ public class VisitRequest implements Request {
     @Override
     public Response execute(Library library) {
         System.out.println("Executing request: " + this.textString);
-        return new Response(this, "VisitRequest response");
+        if(!this.isPartial) {
+            if(this.params.length == 2) return new Response("Login request with valid args");
+            return new Response(this, "Invalid arguments");
+        }
+
+        return new Response(this, "TODO: Process partial command");
     }
 
     @Override

@@ -1,6 +1,7 @@
 import Books.BookList;
 import GUI.Login;
 import LBMS.Library;
+import LBMS.Model;
 import Requests.RegisterRequest;
 import Requests.Request;
 import Requests.Response;
@@ -19,7 +20,8 @@ public class ClientPTUI {
 
     public static void main(String[] args) {
         JFrame frame = new JFrame ();
-        JPanel loginPanel = new Login(frame);
+        Model model = new Model();
+        JPanel loginPanel = new Login(frame, model);
 
         BookList books = new BookList("src/books.txt");
         Library LBMS = new Library(books);

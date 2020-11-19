@@ -32,7 +32,7 @@ public class RegisterRequest implements Request {
 
     @Override
     public Response execute(Library library) {
-        System.out.println("Executing request: " + this.textString + " " + this.params.length);
+        System.out.println("Executing request: " + this.textString);
         if(!this.isPartial) {
             if(this.params.length == 5) return new Response(this, library.createNewVisitor(params[1], params[2], params[3], params[4]));
             return new Response(this, "Invalid arguments");
