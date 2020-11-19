@@ -6,6 +6,7 @@ import Requests.RegisterRequest;
 import Requests.Request;
 import Requests.Response;
 import Requests.VisitRequest;
+import Visit.LocalLibrary;
 
 import javax.swing.*;
 import java.util.Scanner;
@@ -24,7 +25,7 @@ public class ClientPTUI {
         JPanel loginPanel = new Login(frame, model);
 
         BookList books = new BookList("src/books.txt");
-        Library LBMS = new Library(books);
+        Library LBMS = new LocalLibrary(books);
         Scanner input = new Scanner(System.in);
         String in = "";
         do {
