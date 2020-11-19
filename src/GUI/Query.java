@@ -10,7 +10,7 @@ public class Query extends JPanel {
     private JButton QueryBtn;
     private JTextArea textArea;
 
-    public Query() {
+    public Query(JFrame frame) {
         //construct components
         RedoBtn = new JButton ("Redo");
         UndoBtn = new JButton ("Undo");
@@ -36,15 +36,15 @@ public class Query extends JPanel {
         QueryTxtFld.setBounds (120, 465, 700, 25);
         QueryBtn.setBounds (720, 500, 100, 25);
         textArea.setBounds (120, 80, 700, 375);
-    }
 
-
-    public static void main (String[] args) {
-        JFrame frame = new JFrame ("Query Panel");
-        frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add (new Query());
+        frame.setTitle("Query panel");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(this);
         frame.pack();
         frame.setResizable(false);
-        frame.setVisible (true);
+        frame.setVisible(true);
     }
+
+
+
 }

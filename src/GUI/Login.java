@@ -15,7 +15,7 @@ public class Login extends JPanel {
     private JButton resetButton = new JButton("Sign up");
 
 
-    public Login() {
+    public Login(JFrame frame) {
         titleLabel.setFont(new Font("Calibri", Font.BOLD, 24));
 
         setPreferredSize (new Dimension (360, 400));
@@ -37,18 +37,15 @@ public class Login extends JPanel {
         loginButton.setBounds(50, 300, 100, 30);
         resetButton.setBounds(200, 300, 100, 30);
 
-    }
-    
-
-    public static void main(String[] args) {
-        JFrame frame = new JFrame ("Login Panel");
+        frame.setTitle("Login");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add (new Login());
+        frame.add(this);
         frame.pack();
         frame.setResizable(false);
         frame.setVisible(true);
-
     }
+    
+
 
 }
     
