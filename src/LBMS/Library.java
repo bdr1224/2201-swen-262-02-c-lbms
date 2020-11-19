@@ -1,6 +1,7 @@
 package LBMS;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import Books.BookList;
@@ -9,7 +10,7 @@ import Visitor.Visitor;
 import Visitor.VisitorObserver;
 
 public class Library implements VisitorObserver, TimeHandler {
-    private HashMap<String, String> visitors;
+    private HashMap<String, Visitor> visitors;
     private ArrayList<Visitor> currentVisitors = new ArrayList<Visitor>();
     private BookList books;
     private LibraryStatus status;
@@ -54,11 +55,18 @@ public class Library implements VisitorObserver, TimeHandler {
         }
     }
     
-    public void processRequest(String in) {
+    public String processRequest(String in) {
         String[] params = in.split(",");
         switch(params[0]) {
-            case "quit": System.out.println("Goodbye!");break;
-            default: System.out.println("Unrecognized command"); break;
+            case "quit": return "Goodbye!";
+            case "register": return this.createNewVisitor(params[1], params[2], params[3], params[4]);
+            default: return "Unrecognized command";
         }
+    }
+    
+    private String createNewVisitor(String firstName, String lastName, String address, String phoneNumber) {
+        Visitor visitor = new Visitor(firstName, lastName, address, phoneNumber);
+        this.visitors.put(visitor.getId(), visitor);
+        return "register," + visitor.getId() + "," + (new Date().getDate());
     }
 }

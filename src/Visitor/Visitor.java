@@ -141,4 +141,6 @@ public class Visitor implements VisitorSubject, TimeHandler {
         }
         amountDue = sum;
     }
+    
+    public String getId() { return this.id; }
 }

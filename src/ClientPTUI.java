@@ -19,7 +19,7 @@ public class ClientPTUI {
         do {
             System.out.print(">>> ");
             in = input.nextLine();
-            LBMS.processRequest(in);
+            System.out.println(LBMS.processRequest(in));
         } while (!in.equals("quit"));
     }
 }

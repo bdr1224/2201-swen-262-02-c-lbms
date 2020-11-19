@@ -1,7 +1,6 @@
 package Books;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Represents a book in BWL
@@ -19,7 +18,7 @@ public class Book {
     /**
      * Author of book
      */
-    private ArrayList<String> author;
+    private final ArrayList<String> author;
     /**
      * ISBN of the book
      */
@@ -141,4 +140,10 @@ public class Book {
                 ", publishedDate=" + publishedDate +
                 '}';
     }
+    
+    /**
+     * Get the publisher of this book
+     * @return publisher of this book
+     */
+    public String getPublisher() { return this.publisher; }
 }
