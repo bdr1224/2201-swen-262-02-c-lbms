@@ -37,8 +37,8 @@ public class ProxyLibrary extends Library {
     public void listen() {
         while(true) {
             try {
-                Request request = (Request) networkIn.readObject();
-                System.out.println(request.getTextString());
+                Request<?> request = (Request<?>) networkIn.readObject();
+                System.out.println(request.getData());
             } catch (IOException | ClassNotFoundException e) {
                 e.printStackTrace();
             }

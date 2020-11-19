@@ -1,15 +1,24 @@
 package Visit;
 
-public class Request {
-    private String textString;
+import java.io.Serializable;
 
-    public Request(String textString) {
-        this.textString = textString + ";";
+public class Request<E extends Serializable> implements Serializable {
+    private E data;
+
+    public Request(E data) {
+        this.data = data;
     }
 
     public boolean execute() {
         return false;
     }
 
-    public String getTextString() { return textString; }
+    public E getData() { return data; }
+
+    @Override
+    public String toString() {
+        return "Request{" +
+                "data=" + data +
+                '}';
+    }
 }

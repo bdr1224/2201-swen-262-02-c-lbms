@@ -32,8 +32,8 @@ public class LocalLibrary extends Library {
 
             boolean proceed = false;
             while (!proceed) {
-                Response response = (Response) this.networkIn.readObject();
-                System.out.println(response.getTextString());
+                Response<?> response = (Response<?>) this.networkIn.readObject();
+                System.out.println(response.getData());
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();

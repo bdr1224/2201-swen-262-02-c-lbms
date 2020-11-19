@@ -1,11 +1,20 @@
 package Visit;
 
-public class Response {
-    private String textString;
+import java.io.Serializable;
 
-    public Response(String textString) {
-        this.textString = textString;
+public class Response<E extends Serializable> implements Serializable {
+    private E data;
+
+    public Response(E data) {
+        this.data = data;
     }
 
-    public String getTextString() { return textString; }
+    public E getData() { return data; }
+
+    @Override
+    public String toString() {
+        return "Response{" +
+                "data=" + data +
+                '}';
+    }
 }
