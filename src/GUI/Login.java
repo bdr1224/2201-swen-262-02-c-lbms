@@ -12,7 +12,7 @@ public class Login extends JPanel {
     private JTextField userTextField = new JTextField();
     private JPasswordField passwordField = new JPasswordField();
     private JButton loginButton = new JButton("Login");
-    private JButton resetButton = new JButton("Sign up");
+    private JButton SignUpButton = new JButton("Sign up");
 
 
     public Login(JFrame frame) {
@@ -27,7 +27,7 @@ public class Login extends JPanel {
         add(userTextField);
         add(passwordField);
         add(loginButton);
-        add(resetButton);
+        add(SignUpButton);
 
         titleLabel.setBounds(120, 50, 200, 30);
         userLabel.setBounds(50, 150, 100, 30);
@@ -35,7 +35,7 @@ public class Login extends JPanel {
         userTextField.setBounds(150, 150, 150, 30);
         passwordField.setBounds(150, 220, 150, 30);
         loginButton.setBounds(50, 300, 100, 30);
-        resetButton.setBounds(200, 300, 100, 30);
+        SignUpButton.setBounds(200, 300, 100, 30);
 
         frame.setTitle("Login");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,6 +43,17 @@ public class Login extends JPanel {
         frame.pack();
         frame.setResizable(false);
         frame.setVisible(true);
+
+        // action listeners
+        loginButton.addActionListener(e -> {
+            frame.remove(this);
+            JPanel queryPanel = new Query(frame);
+        });
+        SignUpButton.addActionListener(e -> {
+            frame.remove(this);
+            JPanel queryPanel = new Query(frame);
+        });
+
     }
     
 
