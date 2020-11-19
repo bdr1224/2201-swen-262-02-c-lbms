@@ -2,6 +2,8 @@ package Books;
 
 import Visitor.Command;
 import Visitor.Application;
+import Visitor.UndoRedoManager;
+
 import java.util.ArrayList;
 
 
@@ -20,10 +22,14 @@ public class Borrow implements Command{
     public String execute(){
         try{
             if(this.canUndo){
-                //Application a = new Application();
+                Return r = new Return(this.visitorID, this.bookISBN, false);
+                Application a = new Application(r);
+                UndoRedoManager.getManager().getRedoStack().add(a);
             }
             else{
-                return "";
+                Return r = new Return(this.visitorID, this.bookISBN, false);
+                Application a = new Application(r);
+                UndoRedoManager.getManager().getUndoStack().add(a);
             }
         } catch (Exception e){
             e.printStackTrace();
