@@ -14,7 +14,9 @@ public class Library implements VisitorObserver, TimeHandler {
     private BookList books;
     private LibraryStatus status;
 
-    
+    public Library(BookList books) {
+        this.books = books;
+    }
     
     public void setStatus(LibraryStatus status) { this.status = status; }
     
@@ -49,6 +51,14 @@ public class Library implements VisitorObserver, TimeHandler {
             this.shutdown();
         } else if (te.getHour() == 8) {
             this.open();
+        }
+    }
+    
+    public void processRequest(String in) {
+        String[] params = in.split(",");
+        switch(params[0]) {
+            case "quit": System.out.println("Goodbye!");break;
+            default: System.out.println("Unrecognized command"); break;
         }
     }
 }

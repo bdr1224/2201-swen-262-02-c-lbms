@@ -1,7 +1,7 @@
-import Books.Book;
 import Books.BookList;
-import Books.OrderStrategies.*;
-import Books.SearchStrategies.*;
+import LBMS.Library;
+
+import java.util.Scanner;
 
 /**
  * This class represents the client and it performs
@@ -13,8 +13,13 @@ public class ClientPTUI {
 
     public static void main(String[] args) {
         BookList books = new BookList("src/books.txt");
-        books.setSearcher(new SearchByAuthor());
-        books.setSorter(new OrderByTitle());
-        books.search("J.K. Rowling").forEach(book -> System.out.println(book.toString()));
+        Library LBMS = new Library(books);
+        Scanner input = new Scanner(System.in);
+        String in = "";
+        do {
+            System.out.print(">>> ");
+            in = input.nextLine();
+            LBMS.processRequest(in);
+        } while (!in.equals("quit"));
     }
 }

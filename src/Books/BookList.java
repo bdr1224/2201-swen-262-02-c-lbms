@@ -8,7 +8,7 @@ public class BookList {
 
     private BookSorter sorter;
     private BookSearcher searcher;
-    private ArrayList<Book> books;
+    private final ArrayList<Book> books;
     
     /**
      * Read in books from file on startup
