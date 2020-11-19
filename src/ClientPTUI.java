@@ -1,5 +1,9 @@
 import Books.BookList;
 import LBMS.Library;
+import Requests.RegisterRequest;
+import Requests.Request;
+import Requests.Response;
+import Requests.VisitRequest;
 
 import java.util.Scanner;
 
@@ -19,7 +23,23 @@ public class ClientPTUI {
         do {
             System.out.print(">>> ");
             in = input.nextLine();
-            System.out.println(LBMS.processRequest(in));
+            Request request = processInput(in);
+            if(request != null) {
+                Response response = LBMS.processRequest(request);
+                System.out.println(request.getTextString());
+                System.out.println(response.getTextString());
+            } else System.out.println("Unrecognized command!");
         } while (!in.equals("quit"));
+    }
+
+    public static Request processInput(String in) {
+        String[] params = in.split(",");
+        switch(params[0]) {
+            case "connect":
+                return new VisitRequest("connect");
+            case "register":
+                return new RegisterRequest("register");
+            default: return null;
+        }
     }
 }

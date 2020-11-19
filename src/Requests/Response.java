@@ -30,4 +30,6 @@ public class Response {
     public void addResponse(String textString) {
         this.textString += textString + ", ";
     }
+
+    public String getTextString() { return this.textString; }
 }

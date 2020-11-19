@@ -1,11 +1,11 @@
 package Requests;
 
-public class VisitRequest implements Request {
+public class RegisterRequest implements Request {
     private String textString;
     private String[] params;
     private boolean isPartial;
 
-    public VisitRequest(String textString) {
+    public RegisterRequest(String textString) {
         String endingChar = textString.substring(textString.length() - 1);
         if(endingChar.equals(";")) {
             this.textString = textString;
@@ -22,7 +22,7 @@ public class VisitRequest implements Request {
 
     @Override
     public void execute() {
-        System.out.println("Executing VisitRequest");
+        System.out.println("Executing RegisterRequest");
     }
 
     @Override

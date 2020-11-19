@@ -5,6 +5,10 @@ import java.util.Date;
 import java.util.HashMap;
 
 import Books.BookList;
+import Requests.RegisterRequest;
+import Requests.Request;
+import Requests.Response;
+import Requests.VisitRequest;
 import Visitor.LBMSEntry;
 import Visitor.Visitor;
 import Visitor.VisitorObserver;
@@ -55,12 +59,18 @@ public class Library implements VisitorObserver, TimeHandler {
         }
     }
     
-    public String processRequest(String in) {
-        String[] params = in.split(",");
+    public Response processRequest(Request request) {
+        String[] params = request.getParams();
         switch(params[0]) {
-            case "quit": return "Goodbye!";
-            case "register": return this.createNewVisitor(params[1], params[2], params[3], params[4]);
-            default: return "Unrecognized command";
+            case "connect":
+                request.execute();
+                return new Response(request, "client_id");
+            case "quit":
+                System.out.println("Goodbye!");
+                System.exit(0);
+            case "register":
+                return new Response(request, this.createNewVisitor(params[1], params[2], params[3], params[4]));
+            default: return new Response(request, "Unrecognized command");
         }
     }
     
