@@ -1,10 +1,12 @@
 import Books.BookList;
+import GUI.Login;
 import LBMS.Library;
 import Requests.RegisterRequest;
 import Requests.Request;
 import Requests.Response;
 import Requests.VisitRequest;
 
+import javax.swing.*;
 import java.util.Scanner;
 
 /**
@@ -16,6 +18,9 @@ import java.util.Scanner;
 public class ClientPTUI {
 
     public static void main(String[] args) {
+        JFrame frame = new JFrame ();
+        JPanel loginPanel = new Login(frame);
+
         BookList books = new BookList("src/books.txt");
         Library LBMS = new Library(books);
         Scanner input = new Scanner(System.in);
