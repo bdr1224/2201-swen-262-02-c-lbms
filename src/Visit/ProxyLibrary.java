@@ -5,43 +5,50 @@ import LBMS.Library;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.util.ArrayList;
 
 public class ProxyLibrary extends Library {
-    private ServerSocket serverSocket;
-    private int port;
     private ObjectInputStream networkIn;
     private ObjectOutputStream networkOut;
-    private ArrayList<LocalLibrary> clients;
+    private int clientId;
 
-    public ProxyLibrary(int port) {
-        this.port = port;
-    }
-
-    public void startServer() {
-        try {
-            this.serverSocket = new ServerSocket(this.port);
-            Socket clientSocket = serverSocket.accept();
-
-            this.networkOut = new ObjectOutputStream(clientSocket.getOutputStream());
-            this.networkIn = new ObjectInputStream(clientSocket.getInputStream());
-
-            listen();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public ProxyLibrary(ObjectInputStream networkIn, ObjectOutputStream networkOut) {
+        this.networkIn = networkIn;
+        this.networkOut = networkOut;
+        this.clientId = -1;
     }
 
     public void listen() {
         while(true) {
             try {
                 Request<?> request = (Request<?>) networkIn.readObject();
-                System.out.println(request.getData());
-            } catch (IOException | ClassNotFoundException e) {
+                System.out.println("CLIENT REQUEST: " + request);
+
+                switch ((String) request.getData()) {
+                    case "connect;":
+                        respond(new Response("connect," + this.clientId));
+                        break;
+                    default:
+                        respond(new Response("unknown;"));
+                        break;
+                }
+            } catch (IOException e) {
+                Server.removeClient(this);
+            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         }
     }
+
+    public void respond(Response response) {
+        try {
+            networkOut.writeObject(response);
+            networkOut.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setClientId(int id) { this.clientId = id; }
+
+    public int getClientId() { return clientId; }
 }

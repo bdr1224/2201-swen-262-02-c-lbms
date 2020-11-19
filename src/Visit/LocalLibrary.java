@@ -28,12 +28,13 @@ public class LocalLibrary extends Library {
 
     public void connect() {
         try {
-            networkOut.writeObject(new ConnectRequest());
+            networkOut.writeObject(new ConnectRequest("connect;"));
 
             boolean proceed = false;
             while (!proceed) {
                 Response<?> response = (Response<?>) this.networkIn.readObject();
-                System.out.println(response.getData());
+
+                System.out.println("SERVER RESPONSE: " + response);
             }
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
