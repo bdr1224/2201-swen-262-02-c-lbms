@@ -1,5 +1,7 @@
 package GUI;
 
+import LBMS.Model;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,8 +16,12 @@ public class Login extends JPanel {
     private JButton loginButton = new JButton("Login");
     private JButton SignUpButton = new JButton("Sign up");
 
+    private Model model;
 
-    public Login(JFrame frame) {
+
+    public Login(JFrame frame, Model model) {
+        this.model = model;
+
         titleLabel.setFont(new Font("Calibri", Font.BOLD, 24));
 
         setPreferredSize (new Dimension (360, 400));
@@ -46,12 +52,18 @@ public class Login extends JPanel {
 
         // action listeners
         loginButton.addActionListener(e -> {
-            frame.remove(this);
-            JPanel queryPanel = new Query(frame);
+            if(!userTextField.getText().equals("") && !passwordField.getText().equals("")) {
+                String[] response = model.processCommand("visit," + userTextField.getText() + "," + passwordField.getText() + ";");
+                frame.remove(this);
+                JPanel queryPanel = new Query(frame, model);
+            } else System.out.println("Enter acc info");
         });
         SignUpButton.addActionListener(e -> {
-            frame.remove(this);
-            JPanel queryPanel = new Query(frame);
+            if(!userTextField.getText().equals("") && !passwordField.getText().equals("")) {
+                String[] response = model.processCommand("register," + userTextField.getText() + "," + passwordField.getText() + ",test,test;");
+                frame.remove(this);
+                JPanel queryPanel = new Query(frame, model);
+            } else System.out.println("Enter acc info");
         });
 
     }

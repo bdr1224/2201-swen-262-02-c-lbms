@@ -1,6 +1,7 @@
 import Books.BookList;
 import GUI.Login;
 import LBMS.Library;
+import LBMS.Model;
 import Requests.RegisterRequest;
 import Requests.Request;
 import Requests.Response;
@@ -19,7 +20,8 @@ public class ClientPTUI {
 
     public static void main(String[] args) {
         JFrame frame = new JFrame ();
-        JPanel loginPanel = new Login(frame);
+        Model model = new Model();
+        JPanel loginPanel = new Login(frame, model);
 
         BookList books = new BookList("src/books.txt");
         Library LBMS = new Library(books);
@@ -29,11 +31,9 @@ public class ClientPTUI {
             System.out.print(">>> ");
             in = input.nextLine();
             Request request = processInput(in);
-            if(request != null) {
-                Response response = LBMS.processRequest(request);
-                System.out.println(request.getTextString());
-                System.out.println(response.getTextString());
-            } else System.out.println("Unrecognized command!");
+            Response response = LBMS.processRequest(request);
+            if(request != null) System.out.println("Req: " + request.getTextString());
+            System.out.println("Res: " + response.getTextString());
         } while (!in.equals("quit"));
     }
 
@@ -41,9 +41,9 @@ public class ClientPTUI {
         String[] params = in.split(",");
         switch(params[0]) {
             case "connect":
-                return new VisitRequest("connect");
+                return new VisitRequest(in);
             case "register":
-                return new RegisterRequest("register");
+                return new RegisterRequest(in);
             default: return null;
         }
     }

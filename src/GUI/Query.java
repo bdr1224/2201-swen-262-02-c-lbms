@@ -14,9 +14,9 @@ public class Query extends JPanel {
     private JScrollPane scroll;
     private Model model;
 
-    public Query(JFrame frame) {
+    public Query(JFrame frame, Model model) {
         //Init model
-        model = new Model();
+        this.model = model;
 
         //construct components
         RedoBtn = new JButton ("Redo");

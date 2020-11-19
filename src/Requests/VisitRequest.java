@@ -1,5 +1,12 @@
 package Requests;
 
+import LBMS.Library;
+
+/**
+ * This class represents an LBMS visit request.
+ *
+ * @author Jake Waclawski
+ */
 public class VisitRequest implements Request {
     private String textString;
     private String[] params;
@@ -15,14 +22,21 @@ public class VisitRequest implements Request {
             this.isPartial = true;
         } else {
             this.textString = textString + ";";
+            this.isPartial = false;
         }
 
         this.params = this.textString.split(",");
     }
 
     @Override
-    public void execute() {
-        System.out.println("Executing VisitRequest");
+    public Response execute(Library library) {
+        System.out.println("Executing request: " + this.textString);
+        if(!this.isPartial) {
+            if(this.params.length == 2) return new Response("Login request with valid args");
+            return new Response(this, "Invalid arguments");
+        }
+
+        return new Response(this, "TODO: Process partial command");
     }
 
     @Override

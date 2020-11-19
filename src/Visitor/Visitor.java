@@ -6,6 +6,7 @@ import LBMS.TimeHandler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * This class represents an LBMS visitor
@@ -38,7 +39,7 @@ public class Visitor implements VisitorSubject, TimeHandler {
     /**
      * Visitor ID
      */
-    private String id = Integer.toString(ID_GEN++);
+    private String id;
     /**
      * Visitor checked out books
      */
@@ -68,6 +69,8 @@ public class Visitor implements VisitorSubject, TimeHandler {
         this.lastName = lastName;
         this.address = address;
         this.phoneNumber = phoneNumber;
+        Random rand = new Random();
+        this.id = Integer.toString(rand.nextInt(ID_GEN + 1));
     }
     
     /**
