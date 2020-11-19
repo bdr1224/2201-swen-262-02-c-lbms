@@ -64,6 +64,12 @@ public class Query extends JPanel {
                 if (msg != null) textArea.append(msg + "\n");
             }
         });
+        UndoBtn.addActionListener(e -> {
+            // TODO
+        });
+        RedoBtn.addActionListener(e -> {
+            // TODO
+        });
     }
 
 
