@@ -19,7 +19,7 @@ public class RedoRequest implements Request{
     public Response execute(Library library){
         /*
         this.appl.getState().execute();
-        return "undo,success;";*/
+        return "redo,success;";*/
         System.out.println("Executing request");
         this.appl = UndoRedoManager.getManager().getUndoStack().pop();
         return new Response(this, "Redone");
