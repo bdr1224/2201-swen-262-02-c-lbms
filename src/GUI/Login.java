@@ -8,13 +8,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Login extends JPanel {
-    private JLabel passwordLabel = new JLabel("Password");
-    private JLabel userLabel = new JLabel("Username");
-    private JLabel titleLabel = new JLabel("LBMS Login");
-    private JTextField userTextField = new JTextField();
-    private JPasswordField passwordField = new JPasswordField();
-    private JButton loginButton = new JButton("Login");
-    private JButton SignUpButton = new JButton("Sign up");
+    private JLabel passwordLabel;
+    private JLabel userLabel;
+    private JLabel titleLabel;
+    private JTextField userTextField;
+    private JPasswordField passwordField;
+    private JButton loginButton;
+    private JButton SignUpButton;
 
     private Model model;
 
@@ -22,6 +22,14 @@ public class Login extends JPanel {
     public Login(JFrame frame, Model model) {
         this.model = model;
 
+        //construct components
+        passwordLabel = new JLabel("Password");
+        userLabel = new JLabel("Username");
+        titleLabel = new JLabel("LBMS Login");
+        userTextField = new JTextField();
+        passwordField = new JPasswordField();
+        loginButton = new JButton("Login");
+        SignUpButton = new JButton("Sign up");
         titleLabel.setFont(new Font("Calibri", Font.BOLD, 24));
 
         setPreferredSize (new Dimension (360, 400));
@@ -59,11 +67,8 @@ public class Login extends JPanel {
             } else System.out.println("Enter acc info");
         });
         SignUpButton.addActionListener(e -> {
-            if(!userTextField.getText().equals("") && !passwordField.getText().equals("")) {
-                String[] response = model.processCommand("register," + userTextField.getText() + "," + passwordField.getText() + ",test,test;");
-                frame.remove(this);
-                JPanel queryPanel = new Query(frame, model);
-            } else System.out.println("Enter acc info");
+            frame.remove(this);
+            JPanel signupPanel = new Signup(frame, model);
         });
 
     }
